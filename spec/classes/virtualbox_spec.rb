@@ -9,7 +9,7 @@ describe 'virtualbox' do
     })
   end
   it do
-    should contain_package('VirtualBox-4.3.12-93733').with({
+    should contain_package('VirtualBox-4.3.12').with({
       :ensure   => 'installed',
       :source   => 'http://download.virtualbox.org/virtualbox/4.3.12/VirtualBox-4.3.12-93733-OSX.dmg',
       :provider => 'pkgdmg',
