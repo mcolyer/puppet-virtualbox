@@ -3,7 +3,7 @@
 # Usage:
 #
 #   include virtualbox
-class virtualbox {
+class virtualbox($version = '4.3.12', $build = '93733') {
 
   exec { 'Kill Virtual Box Processes':
     command     => 'pkill "VBoxXPCOMIPCD" || true && pkill "VBoxSVC" || true && pkill "VBoxHeadless" || true',
@@ -11,10 +11,10 @@ class virtualbox {
     refreshonly => true,
   }
 
-  package { 'VirtualBox-4.3.12-93733-OSX.dmg':
+  package { "VirtualBox-${version}":
     ensure   => installed,
     provider => 'pkgdmg',
-    source   => 'http://download.virtualbox.org/virtualbox/4.3.12/VirtualBox-4.3.12-93733-OSX.dmg',
+    source   => "http://download.virtualbox.org/virtualbox/${version}/VirtualBox-${version}-${build}-OSX.dmg",
     require  => Exec['Kill Virtual Box Processes'],
   }
 }
